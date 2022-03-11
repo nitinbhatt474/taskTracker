@@ -1,0 +1,24 @@
+.assignments header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  color: #eee;
+}
+
+.type {
+  padding: 1rem 1.5rem;
+}
+
+.assignments header > span {
+  display: block;
+  position: relative;
+  padding: 1rem;
+  cursor: pointer;
+}
+
+.active-type {
+  color: #cf871c;
+  border-bottom: 1px solid #cf871c !important;
+  transition: all 0.5s ease-out;
+}

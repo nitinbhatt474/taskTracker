@@ -1,0 +1,10 @@
+.header {
+  color: #cf8712;
+  font-size: 1.7rem;
+  text-align: center;
+  padding: 0.5rem;
+}
+
+.app {
+  position: relative;
+}
