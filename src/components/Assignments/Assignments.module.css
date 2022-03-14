@@ -7,13 +7,14 @@
 }
 
 .type {
-  padding: 1rem 1.5rem;
+  display: inline-block;
+  padding: 0.5rem 1.5rem;
 }
 
 .assignments header > span {
   display: block;
   position: relative;
-  padding: 1rem;
+  padding: 0.5rem;
   cursor: pointer;
 }
 
@@ -21,4 +22,12 @@
   color: #cf871c;
   border-bottom: 1px solid #cf871c !important;
   transition: all 0.5s ease-out;
+}
+
+@media screen and (max-width: 600px) {
+  .type {
+    font-size: 1.2rem;
+    padding: 0.5rem 0.5rem;
+    text-align: center;
+  }
 }

@@ -1,0 +1,11 @@
+.empty-list {
+  font-size: 1.5rem;
+  color: #ccc;
+  margin-top: 10%;
+  text-align: center;
+}
+
+.assignment-list {
+  max-width: 90%;
+  margin: auto;
+}

@@ -11,16 +11,23 @@
 .modal {
   position: fixed;
   margin: auto;
-  background-color: #14213d;
+  background-color: #1b3837;
   max-width: 90%;
   left: 50%;
   top: 30%;
-  z-index: 30;
+  z-index: 21;
   transform: translate(-50%, -30%);
   padding: 1rem 2rem;
   color: white;
   border-radius: 10px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25);
   text-align: center;
+}
+
+.modalTitle {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #ac8d05;
 }
 
 .close-btn {
@@ -33,7 +40,14 @@
 }
 
 .invalid {
-  box-shadow: 0px 0px 15px rgba(255, 0, 0, 0.3);
+  z-index: 31;
+  box-shadow: 0px 0px 20px rgba(255, 0, 0, 0.5);
+  color: rgb(248, 175, 175);
+  font-size: 1.1rem;
+}
+
+.invalid-overlay {
+  z-index: 30;
 }
 
 .content {

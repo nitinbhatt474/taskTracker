@@ -1,0 +1,25 @@
+.form-input {
+  display: block;
+  margin-bottom: 1rem;
+}
+
+.form-input label {
+  display: block;
+  text-align: left;
+  margin-bottom: 0.5rem;
+  font-size: 1.1rem;
+  font-weight: bold;
+}
+
+.form-input input {
+  width: 35vw;
+  padding: 0.5rem;
+  font-size: 1rem;
+  border-radius: 5px;
+}
+
+@media screen and (max-width: 600px) {
+  .form-input input {
+    width: 70vw;
+  }
+}
