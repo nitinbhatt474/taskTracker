@@ -7,6 +7,7 @@ import classes from "./AddModal.module.css";
 
 const AddModal = (props) => {
   const [formState, setFormState] = useState({
+    taskType: props.currentType,
     taskName: null,
     taskDeadline: null,
     taskPrice: null,
@@ -29,6 +30,8 @@ const AddModal = (props) => {
     if (showModal) {
       setShowInvalidModal(showModal);
       setInvalidMessage(message);
+    } else {
+      props.addTask(formState);
     }
   };
 
@@ -36,13 +39,15 @@ const AddModal = (props) => {
     setFormState((prevState) => {
       if (key === "taskPrice" || key === "taskRepetitions")
         value = parseInt(value);
+      else if (key === "taskDeadline") {
+        const date = new Date(value);
+        value = `${date.getDay()}-${date.getMonth()}-${date.getFullYear()}`;
+      }
       const newState = { ...prevState };
       newState[key] = value;
       return newState;
     });
   };
-
-  console.log(formState);
 
   const hideInvalidModal = () => {
     setShowInvalidModal(false);

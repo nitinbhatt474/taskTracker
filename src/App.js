@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 
 import Modal from "./components/UI/Modal";
 import Assignments from "./components/Assignments/Assignments";
+import AssignmentContextProvider from "./components/store/AssignmentContextProvider";
+
 import classes from "./App.module.css";
 
 /**
@@ -26,7 +28,9 @@ function App() {
           </Modal>
         </>
       )}
-      <Assignments />
+      <AssignmentContextProvider>
+        <Assignments />
+      </AssignmentContextProvider>
     </div>
   );
 }

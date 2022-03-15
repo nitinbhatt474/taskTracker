@@ -20,7 +20,7 @@ const Overlay = (props) => {
 /**
  * Renders the Modal with data passed enclosed within the Modal tag and changes appearance based
  *  on props passed. props other children are optional.
- * @param {*} props {invalid, cancellable, onClose}
+ * @param {*} props {invalid, cancellable, onClose, title}
  */
 const ModalData = (props) => {
   return (
@@ -39,7 +39,7 @@ const ModalData = (props) => {
 
 /**
  *
- * @param {*} props {notCancellable, invalid, onClose}, enclose whatever you want to render within the element
+ * @param {*} props {notCancellable, invalid, onClose, title}, enclose whatever you want to render within the element
  */
 const Modal = (props) => {
   return (
