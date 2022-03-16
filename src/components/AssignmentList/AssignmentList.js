@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react";
 
-import AssignmentListItem from "./AssignmentListItem";
+import AssignmentListItemWrapper from "./AssignmentListItemWrapper";
 import classes from "./AssignmentList.module.css";
 import AddButton from "./AddButton";
 import AssignmentContext from "../store/AssignmentContext";
@@ -16,21 +16,23 @@ const AssignmentList = (props) => {
   const ctx = useContext(AssignmentContext);
   const [showAddModal, setShowAddModal] = useState(false);
 
+  console.log(new Date().getMonth());
+
   const currentType = { i: "incomplete", p: "payment-pending", c: "complete" };
-  console.log(ctx.data);
   const list = ctx.data
     .filter((task) => task.taskType === currentType[props.type])
     .map((task) => {
-      return <AssignmentListItem key={task.taskName} data={task} />;
+      return <AssignmentListItemWrapper key={task.taskName} data={task} />;
     });
 
   const emptyListMessage = `No ${currentType[props.type]} assignments found!`;
 
   const handleCloseModal = () => setShowAddModal(false);
   const handleOpenModal = () => setShowAddModal(true);
-  const addTask = (data) => ctx.addData(data);
-
-  console.log(ctx);
+  const addTask = (data) => {
+    ctx.addData(data);
+    handleCloseModal();
+  };
 
   return (
     <div className={classes["assignment-list"]}>

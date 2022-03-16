@@ -23,8 +23,6 @@ const Assignments = () => {
     setPaymentPending,
     currentType,
   };
-  console.log(currentType);
-  console.log(ctx);
 
   return (
     <div className={classes.assignments}>

@@ -15,15 +15,19 @@ const dataReducer = (state, action) => {
         .catch((err) => console.log(err));
       break;
     case actionsTypes.REMOVE:
-      console.log(action.id);
+      dbActions(action.db)
+        .removeTask(action.id)
+        .catch((err) => console.log(err));
       break;
     case actionsTypes.FETCH:
-      const prevData = state.data;
       newState = {
         ...state,
         fetched: true,
-        data: [...prevData, ...action.data],
+        data: [...action.data],
       };
+      break;
+    case actionsTypes.TOGGLE_ADD:
+      newState = { ...newState, added: false };
       break;
     default:
       newState = {
@@ -39,12 +43,31 @@ const dataReducer = (state, action) => {
 
 const AssignmentContextProvider = (props) => {
   const [db, setDb] = useState(null);
+  const fetchData = (db) => {
+    dbActions(db)
+      .fetchAllTasks()
+      .then((res) => {
+        //fetched data successfully
+        dataDispatcher({ type: actionsTypes.FETCH, data: res });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   const addData = (data) => {
     setDb((db) => {
-      dataDispatcher({ type: actionsTypes.ADD, data: data, db });
+      dataDispatcher({ type: actionsTypes.ADD, data, db });
+      fetchData(db);
     });
   };
-  const removeData = (id) => {};
+
+  const removeData = (id) => {
+    setDb((db) => {
+      dataDispatcher({ type: actionsTypes.REMOVE, id, db });
+      fetchData(db);
+    });
+  };
 
   const initState = {
     fetched: false,
@@ -67,16 +90,7 @@ const AssignmentContextProvider = (props) => {
       .then((res) => {
         setDb(res);
         //here res is used instead of db because state is not immediately available right after update.
-        dbActions(res)
-          .fetchAllTasks()
-          .then((res) => {
-            console.log(db);
-            //fetched data successfully
-            dataDispatcher({ type: actionsTypes.FETCH, data: res });
-          })
-          .catch((err) => {
-            console.log(err);
-          });
+        fetchData(res);
       })
       .catch((err) => console.log(err));
   }, []);

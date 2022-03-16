@@ -11,9 +11,9 @@ const Options = ({ items, handleClick, id }) => {
     handleClick(e.target.innerText);
   };
   return (
-    <ul className={classes.options}>
+    <ul className={classes.options} id={id}>
       {items.map((item) => (
-        <li onClick={onClick} key={`${id}${item}`}>
+        <li onClick={onClick} key={`${id}${item}`} id={id + item}>
           {item}
         </li>
       ))}

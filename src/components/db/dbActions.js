@@ -23,7 +23,25 @@ const dbActions = (db) => {
     });
   };
 
-  return { addTask, fetchAllTasks };
+  const removeTask = (taskName) => {
+    return new Promise((resolve, reject) => {
+      const txn = db.transaction(storeName, "readwrite");
+      const store = txn.objectStore(storeName);
+      const index = store.index("taskName");
+      const query = index.getKey(taskName);
+
+      query.onsuccess = (event) => {
+        store.delete(event.target.result);
+        resolve(true);
+      };
+
+      query.onerror = (event) => {
+        reject(false);
+      };
+    });
+  };
+
+  return { addTask, fetchAllTasks, removeTask };
 };
 
 export default dbActions;
