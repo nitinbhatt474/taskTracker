@@ -1,12 +1,11 @@
 import React, { useContext } from "react";
 
-import AssignmentContext from "../store/AssignmentContext";
 import Modal from "../UI/Modal";
 
 import classes from "./DeleteItem.module.css";
 
 const DeleteItem = (props) => {
-  const ctx = useContext(AssignmentContext);
+  const ctx = props;
 
   const closeModal = () => {
     props.onClose("delete");

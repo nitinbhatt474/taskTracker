@@ -38,18 +38,17 @@ const AddModal = (props) => {
   const handleValueChange = (key, value) => {
     setFormState((prevState) => {
       const newState = { ...prevState };
+      let val = value;
       if (key === "taskPrice" || key === "taskRepetitions")
-        value = parseInt(value);
+        val = parseInt(value);
       else if (key === "taskDeadline") {
         const date = new Date(value);
 
         // converting to dd-mm-yyyy format from the default yyyy-mm-dd
         // format of input type date.
-        value = `${date.getDate()}-
-        ${date.getMonth() + 1}-
-        ${date.getFullYear()}`;
+        val = `${date.getDate()}-${date.getMonth() + 1}-${date.getFullYear()}`;
       }
-      newState[key] = value;
+      newState[key] = val;
       console.log(newState);
       return newState;
     });

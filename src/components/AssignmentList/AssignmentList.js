@@ -3,7 +3,6 @@ import React, { useState, useContext } from "react";
 import AssignmentListItemWrapper from "./AssignmentListItemWrapper";
 import classes from "./AssignmentList.module.css";
 import AddButton from "./AddButton";
-import AssignmentContext from "../store/AssignmentContext";
 import AddModal from "./AddModal";
 
 /**
@@ -13,13 +12,12 @@ import AddModal from "./AddModal";
  * type of assignments.
  */
 const AssignmentList = (props) => {
-  const ctx = useContext(AssignmentContext);
   const [showAddModal, setShowAddModal] = useState(false);
 
   console.log(new Date().getMonth());
 
   const currentType = { i: "incomplete", p: "payment-pending", c: "complete" };
-  const list = ctx.data
+  const list = props.data
     .filter((task) => task.taskType === currentType[props.type])
     .map((task) => {
       return <AssignmentListItemWrapper key={task.taskName} data={task} />;
@@ -30,7 +28,7 @@ const AssignmentList = (props) => {
   const handleCloseModal = () => setShowAddModal(false);
   const handleOpenModal = () => setShowAddModal(true);
   const addTask = (data) => {
-    ctx.addData(data);
+    props.addData(data);
     handleCloseModal();
   };
 

@@ -21,7 +21,7 @@ const AssignmentListItem = (props) => {
       </span>
       <span className={classes.pad}>
         <span className={classes.title}>Price: </span>
-        &#8377; {data.taskPrice}
+        &#8377;{data.taskPrice}
       </span>
       <span className={classes.pad}>
         <span className={classes.title}>Repetitions: </span>

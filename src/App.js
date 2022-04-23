@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 
 import Modal from "./components/UI/Modal";
 import Assignments from "./components/Assignments/Assignments";
-import AssignmentContextProvider from "./components/store/AssignmentContextProvider";
 
 import classes from "./App.module.css";
 
@@ -11,26 +10,24 @@ import classes from "./App.module.css";
  * @returns the App component
  */
 function App() {
-  const [dbAvailable, setDbAvailable] = useState(true);
-  useEffect(() => {
-    if (!("indexedDB" in window)) setDbAvailable(false);
-  }, []);
+  const [offline, setOffline] = useState(!navigator.onLine);
+  window.addEventListener("offline", () => setOffline(true));
+  window.addEventListener("online", () => setOffline(false));
+
   return (
     <div className={classes.app}>
-      <header className={classes.header}>Assignment Tracker</header>
-      {!dbAvailable && (
+      <header className={classes.header}>Task Tracker</header>
+      {offline && (
         <>
-          <Modal invalid={true} notCancellable={true}>
+          <Modal invalid={true} notCancellable={true} title="Offline">
             <p>
-              indexedDB not available, The current version can only work with
-              indexedDB. It is recommended to open this in Chrome.
+              You seem to be offline, Please connect to the internet to track
+              tasks
             </p>
           </Modal>
         </>
       )}
-      <AssignmentContextProvider>
-        <Assignments />
-      </AssignmentContextProvider>
+      <Assignments />
     </div>
   );
 }
