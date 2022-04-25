@@ -8,7 +8,7 @@ const PaymentPending = (props) => {
   const [tasks, setTasks] = useState([]);
   const [loading, setLoading] = useState(false);
   const [deleted, setDeleted] = useState(false);
-  const [confirmPayment, setConfirmPayment] = useState(false);
+  //   const [confirmPayment, setConfirmPayment] = useState(false);
   const ctx = useContext(AuthContext);
 
   const toggleDelete = () => setDeleted(true);
