@@ -10,26 +10,26 @@ const MoreInfo = (props) => {
   };
 
   return (
-    <Modal title={`Details of task: "${data.taskName}"`} onClose={onClose}>
+    <Modal title={`Details of task: "${data.name}"`} onClose={onClose}>
       <div className={classes.info}>
         <span className={classes.keyHeading}>Task Name: </span>
-        <span>{data.taskName}</span>
+        <span>{data.name}</span>
       </div>
       <div className={classes.info}>
         <span className={classes.keyHeading}>Task Deadline: </span>
-        <span>{data.taskDeadline}</span>
+        <span>{data.deadline}</span>
       </div>
       <div className={classes.info}>
         <span className={classes.keyHeading}>Task Price: </span>
-        <span>&#8377;{data.taskPrice}</span>
+        <span>&#8377;{data.cost}</span>
       </div>
       <div className={classes.info}>
         <span className={classes.keyHeading}>Number of Repetitions: </span>
-        <span>{data.taskRepetitions}</span>
+        <span>{data.repetitions}</span>
       </div>
       <div className={classes.info}>
         <span className={classes.keyHeading}>Task Description: </span>
-        <span>{data.taskDescription}</span>
+        <span>{data.description}</span>
       </div>
     </Modal>
   );

@@ -1,0 +1,15 @@
+.btn {
+  width: 100%;
+  font-size: 1.1rem;
+  padding: 0.3rem 0px;
+  border-radius: 8px;
+  background-color: #917b1c;
+  color: white;
+  font-weight: 600;
+}
+
+.invalid-message{
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #ae2153;
+}

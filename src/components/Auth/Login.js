@@ -19,7 +19,6 @@ const Login = (props) => {
   };
 
   const handleSubmit = (e) => {
-    setLoading(true);
     e.preventDefault();
     if (email.trim() === "") {
       setMessage("Email address missing");
@@ -29,6 +28,7 @@ const Login = (props) => {
       setMessage("Password missing");
       return;
     }
+    setLoading(true);
     fetch(ctx.backendURL + "auth/login", {
       method: "POST",
       headers: {

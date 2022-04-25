@@ -1,0 +1,56 @@
+.msg {
+    font-size: 1.5rem;
+    color: #ccc;
+    margin-top: 10%;
+    text-align: center;
+}
+
+.tasks{
+    position: relative;
+    max-width: 90%;
+    margin: auto;
+    margin-bottom: 30%;
+}
+
+.pendingDiv{
+    position: fixed;
+    align-items: center;
+    display: flex;
+    left: 15%;
+    justify-content: space-evenly;
+    background-color: #1B2D2A;
+    width: 70%;
+    bottom: 10%;
+    margin: auto;
+    color: #AAA95A;
+    padding: 0.7rem 1.5rem;
+    font-size: 1.1rem;
+    font-weight: bold;
+    animation: grow 0.4s ease-out forwards;
+}
+
+.pendingDiv button{
+    width: fit-content;
+}
+
+.amt{
+    color: #CEFF1A;
+    padding-left: 0.5rem;
+}
+
+@media screen and (max-width: 700px) {
+    .msg{
+        margin: 30% auto;
+    }
+}
+
+@keyframes grow {
+   0%{
+       width: 65%;
+       left: 17.5%;
+   }
+   100%{
+       width: 70%;
+       left: 15%;
+   }
+}

@@ -2,7 +2,7 @@ import React, { useState, useContext } from "react";
 
 import AssignmentListItemWrapper from "./AssignmentListItemWrapper";
 import classes from "./AssignmentList.module.css";
-import AddButton from "./AddButton";
+import AddButton from "../AddTask/AddButton";
 import AddModal from "./AddModal";
 
 /**

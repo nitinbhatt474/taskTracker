@@ -17,3 +17,29 @@ code {
   border-radius: 15px;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25);
 }
+
+.task-loading{
+  display: block;
+  margin: 10% auto;
+  border: 4px solid #1C0221;
+  border-radius: 50%;
+  border-top: 5px solid #E0A458;
+  height: 3rem;
+  width: 3rem;
+  animation: loading 0.8s  linear infinite;
+}
+
+@keyframes loading {
+  0%{
+    transform: rotate(0deg);
+  }
+  100%{
+    transform: rotate(360deg);
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .task-loading{
+    margin: 30% auto;
+  }
+}

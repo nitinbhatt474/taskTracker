@@ -54,6 +54,22 @@
   cursor: pointer;
 }
 
+.deleted{
+  position: relative;
+}
+
+.deleted::after{
+  content: "";
+  z-index: 10;
+  position: absolute;
+  left: 0;
+  top:0;
+  bottom: 0;
+  background-color: #69140E;
+  animation: flow-right forwards 0.7s ease-out;
+  border-radius: 10px;
+}
+
 .doneAnimation {
   animation: grow 0.5s ease-in-out;
 }
@@ -64,5 +80,14 @@
   }
   100% {
     scale: (1);
+  }
+}
+
+@keyframes flow-right{
+  0%{
+    right: 100%;
+  }
+  100%{
+    right: 0;
   }
 }

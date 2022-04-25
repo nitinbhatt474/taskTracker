@@ -10,22 +10,25 @@ const AssignmentListItem = (props) => {
   const { data, done } = props;
 
   return (
-    <li className={classes.taskItem} onClick={props.handleItemClick}>
+    <li
+      className={`${classes.taskItem} ${props.deleted ? classes.deleted : ""}`}
+      onClick={props.handleItemClick}
+    >
       <span className={`${classes.pad} ${classes.taskName}`}>
         <span className={classes.title}>Task Name: </span>
-        {data.taskName}
+        {data.name}
       </span>
       <span className={classes.pad}>
         <span className={classes.title}>Deadline: </span>
-        {data.taskDeadline}
+        {data.deadline}
       </span>
       <span className={classes.pad}>
-        <span className={classes.title}>Price: </span>
-        &#8377;{data.taskPrice}
+        <span className={classes.title}>Cost: </span>
+        &#8377;{data.cost}
       </span>
       <span className={classes.pad}>
         <span className={classes.title}>Repetitions: </span>
-        {data.taskRepetitions}
+        {data.repetitions}
       </span>
       <div className={classes.sideBtnContainer}>
         <img
@@ -37,7 +40,7 @@ const AssignmentListItem = (props) => {
         />
         <span
           className={classes.options}
-          id={data.taskName + "options"}
+          id={data._id + "options"}
           onClick={props.toggleOptions}
         >
           &#8942;
@@ -46,7 +49,9 @@ const AssignmentListItem = (props) => {
           <Options
             items={props.optionItems}
             handleClick={props.handleOptionClick}
+            setShowOptions={props.setShowOptions}
             id={data.taskName + "optionList"}
+            buttonId={data._id + "options"}
           />
         )}
       </div>

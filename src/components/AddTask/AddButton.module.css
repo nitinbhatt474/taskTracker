@@ -1,6 +1,6 @@
 .button {
   position: fixed;
-  display: block;
+  width: auto;
   right: 5%;
   bottom: 5%;
   border-radius: 50%;

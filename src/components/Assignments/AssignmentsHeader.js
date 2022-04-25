@@ -47,7 +47,9 @@ const AssignmentsHeader = (props) => {
       </span>
 
       <div className={classes.loginBar} onClick={toggleLoginWindow}>
-        <span>{ctx.email === null ? "Login" : ctx.email.split("@")[0]}</span>
+        <span className={classes.profileName}>
+          {ctx.email === null ? "Login" : ctx.email.split("@")[0]}
+        </span>
         <img src={profile} alt="profile" />
       </div>
 

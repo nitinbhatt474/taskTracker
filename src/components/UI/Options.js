@@ -6,14 +6,24 @@ import classes from "./Options.module.css";
  * Renders a list that displays some options and also integrates handlers onto them.
  * @param {*} props { items } an object that must have its name and its handler.
  */
-const Options = ({ items, handleClick, id }) => {
+const Options = (props) => {
   const onClick = (e) => {
-    handleClick(e.target.innerText);
+    props.handleClick(e.target.innerText);
   };
+
+  document.addEventListener("click", (e) => {
+    if (e.target.id !== props.id && e.target.id !== props.buttonId)
+      props.setShowOptions(false);
+  });
+
   return (
-    <ul className={classes.options} id={id}>
-      {items.map((item) => (
-        <li onClick={onClick} key={`${id}${item}`} id={id + item}>
+    <ul className={classes.options} id={props.id}>
+      {props.items.map((item) => (
+        <li
+          onClick={onClick}
+          key={`${props.id}${props.item}`}
+          id={props.id + props.item}
+        >
           {item}
         </li>
       ))}
