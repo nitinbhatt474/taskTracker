@@ -7,6 +7,7 @@ import AuthContext from "../store/AuthContext";
 import classes from "./Assignments.module.css";
 import AddModal from "../AddTask/AddModal";
 import PaymentPending from "../AssignmentType/PaymentPending";
+import Complete from "../AssignmentType/Complete";
 
 /**
  * Assignments component that shows the 3 categories of assignments i.e. completed, payment pending and incomplete.
@@ -39,6 +40,9 @@ const Assignments = () => {
       )}
       {currentType === "p" && (
         <PaymentPending changed={changed} toggleChanged={toggleChanged} />
+      )}
+      {currentType === "c" && (
+        <Complete changed={changed} toggleChanged={toggleChanged} />
       )}
       {ctx.loggedIn && <AddButton onClick={toggleAddTask} />}
       {addTask && (

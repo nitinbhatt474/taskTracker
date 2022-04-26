@@ -35,7 +35,7 @@ button{
     border: 3px solid #555;
     border-top: 3px solid white;
     width: 1rem;
-    border-radius: 50%;
+    border-radius: 50% !important;
     height: 1rem;
     animation: load-anim 1s infinite linear;
 }

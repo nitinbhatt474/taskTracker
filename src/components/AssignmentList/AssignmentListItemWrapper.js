@@ -121,6 +121,7 @@ const AssignmentListItemWrapper = (props) => {
     done,
     deleted,
     loading,
+    doneCategory,
     toggleDeleted,
     optionItems,
     toggleOptions,

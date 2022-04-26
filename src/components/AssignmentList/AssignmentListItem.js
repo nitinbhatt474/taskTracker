@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 import Options from "../UI/Options";
 
@@ -8,11 +8,38 @@ import classes from "./AssignmentListItem.module.css";
 
 const AssignmentListItem = (props) => {
   const { data, done } = props;
+  const [longPress, setLongPress] = useState(false);
+  let touchTimer;
+  const swapLoading = window.innerWidth < 700;
+  console.log(swapLoading);
+
+  const handleTouchStart = () => {
+    touchTimer = setTimeout(() => {
+      setLongPress(true);
+    }, 500);
+  };
+
+  const handleTouchEnd = () => {
+    clearTimeout(touchTimer);
+  };
+
+  useEffect(() => {
+    if (longPress) {
+      props.setShowOptions(true);
+      setLongPress(false);
+    }
+  }, [longPress]);
+
+  if (props.loading && swapLoading) {
+    return <li className={classes.taskItem + " loading"}></li>;
+  }
 
   return (
     <li
       className={`${classes.taskItem} ${props.deleted ? classes.deleted : ""}`}
       onClick={props.handleItemClick}
+      onTouchStart={handleTouchStart}
+      onTouchEnd={handleTouchEnd}
     >
       <span className={`${classes.pad} ${classes.taskName}`}>
         <span className={classes.title}>Task Name: </span>
@@ -34,7 +61,15 @@ const AssignmentListItem = (props) => {
         <div className={props.loading ? classes.loading : ""}>
           <img
             id={data.taskName + "done"}
-            src={done ? doneIcon : incompleteIcon}
+            src={
+              props.doneCategory === "incomplete"
+                ? done
+                  ? incompleteIcon
+                  : doneIcon
+                : done
+                ? doneIcon
+                : incompleteIcon
+            }
             className={`${classes.done} ${done ? classes.doneAnimation : ""}`}
             onClick={props.handleDoneClick}
             alt="done-icon"

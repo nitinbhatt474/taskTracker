@@ -108,3 +108,22 @@
     right: 0;
   }
 }
+
+@media screen and (max-width: 700px) {
+  .taskItem{
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .sideBtnContainer{
+    visibility: hidden;
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+    width: auto;
+  }
+
+  .sideBtnContainer ul{
+    visibility: visible;
+  }
+}

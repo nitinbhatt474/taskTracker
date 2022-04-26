@@ -42,6 +42,12 @@
     .msg{
         margin: 30% auto;
     }
+
+    .tasks{
+        max-width: 99%;
+        margin: 0px;
+        padding: 1rem;
+    }
 }
 
 @keyframes grow {

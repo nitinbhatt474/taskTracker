@@ -15,3 +15,10 @@
   margin: 0px;
   padding: 0px;
 }
+
+
+@media screen and (max-width: 700px) {
+  .assignment-list {
+    max-width: 99%;
+  }
+}
