@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import Options from "../UI/Options";
 
@@ -28,7 +28,7 @@ const AssignmentListItem = (props) => {
       props.setShowOptions(true);
       setLongPress(false);
     }
-  }, [longPress]);
+  }, [longPress, props]);
 
   if (props.loading && swapLoading) {
     return <li className={classes.taskItem + " loading"}></li>;
