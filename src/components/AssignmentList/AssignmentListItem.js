@@ -11,7 +11,6 @@ const AssignmentListItem = (props) => {
   const [longPress, setLongPress] = useState(false);
   let touchTimer;
   const swapLoading = window.innerWidth < 700;
-  console.log(swapLoading);
 
   const handleTouchStart = () => {
     touchTimer = setTimeout(() => {

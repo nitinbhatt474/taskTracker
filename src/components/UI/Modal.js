@@ -2,6 +2,8 @@ import React from "react";
 import reactDom from "react-dom";
 import classes from "./Modal.module.css";
 
+import close from "../../icons/close.svg";
+
 /**
  *
  * @returns a overlay component that basically reduces the visibility of the background component.
@@ -27,10 +29,11 @@ const ModalData = (props) => {
     <div className={`${classes.modal} ${props.invalid ? classes.invalid : ""}`}>
       <span className={classes.modalTitle}>{props.title}</span>
       {!props.notCancellable && (
-        <span className={classes["close-btn"]} onClick={props.onClose}>
-          {" "}
-          &#x1F5D9;
-        </span>
+        <img
+          className={classes["close-btn"]}
+          onClick={props.onClose}
+          src={close}
+        />
       )}
       <div className={classes.content}>{props.children}</div>
     </div>

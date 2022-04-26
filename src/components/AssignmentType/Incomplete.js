@@ -38,7 +38,7 @@ const Incomplete = (props) => {
   } else if (loading) return <div className="task-loading"></div>;
   else if (tasks.length === 0) {
     return <div className={classes.msg}>No incomplete tasks present</div>;
-  }
+  } else if (tasks.hasOwnProperty("valid")) return <ul></ul>;
 
   return (
     <ul className={classes.tasks}>

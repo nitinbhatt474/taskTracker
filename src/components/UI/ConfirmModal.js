@@ -26,7 +26,7 @@ const ConfirmModal = (props) => {
             onClick={props.handleCancel}
             disabled={loading}
           >
-            &#x1F5D9; No
+            x No
           </button>
           <button
             className={classes.btn + " " + classes.yes}

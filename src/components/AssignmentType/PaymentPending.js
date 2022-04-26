@@ -39,7 +39,8 @@ const PaymentPending = (props) => {
 
   useEffect(() => {
     if (confirmPayment) {
-      fetch("http://localhost:5000/tasks/update-tasks", {
+      setReason("");
+      fetch(ctx.backendURL + "tasks/update-tasks", {
         method: "POST",
         headers: {
           "content-type": "application/json",

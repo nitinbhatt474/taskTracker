@@ -41,7 +41,9 @@ const Login = (props) => {
         setLoading(false);
         if (res.loggedIn) {
           ctx.login(email, password);
-          props.onClose();
+          setTimeout(() => {
+            props.onClose();
+          }, 100);
         } else setMessage(res.reason);
       })
       .catch((err) => {
