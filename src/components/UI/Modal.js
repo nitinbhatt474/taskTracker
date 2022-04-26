@@ -33,6 +33,7 @@ const ModalData = (props) => {
           className={classes["close-btn"]}
           onClick={props.onClose}
           src={close}
+          alt="close"
         />
       )}
       <div className={classes.content}>{props.children}</div>
