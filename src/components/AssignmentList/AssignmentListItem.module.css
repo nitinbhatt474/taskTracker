@@ -74,6 +74,23 @@
   animation: grow 0.5s ease-in-out;
 }
 
+.loading {
+  border: 3px solid black;
+  border-radius: 50%;
+  border-top: #ccc solid 5px;
+  padding: 0.8rem;
+  animation: rot 0.6s linear infinite;
+}
+
+@keyframes rot {
+  0%{
+    transform: rotate(0deg);
+  }
+  100%{
+    transform: rotate(360deg);
+  }
+}
+
 @keyframes grow {
   0% {
     transform: scale(1.5);

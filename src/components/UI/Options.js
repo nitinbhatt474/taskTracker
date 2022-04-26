@@ -19,11 +19,7 @@ const Options = (props) => {
   return (
     <ul className={classes.options} id={props.id}>
       {props.items.map((item) => (
-        <li
-          onClick={onClick}
-          key={`${props.id}${props.item}`}
-          id={props.id + props.item}
-        >
+        <li onClick={onClick} key={`${props.id}-${item}`} id={props.id + item}>
           {item}
         </li>
       ))}

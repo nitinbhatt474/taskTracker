@@ -1,8 +1,5 @@
 import React, { useState } from "react";
-
-import Modal from "../UI/Modal";
-
-import classes from "./DeleteItem.module.css";
+import ConfirmModal from "../UI/ConfirmModal";
 
 const DeleteItem = (props) => {
   const [reason, setReason] = useState("");
@@ -19,28 +16,17 @@ const DeleteItem = (props) => {
       } else setReason(res.reason);
     });
   };
+  const message = `Are you sure you want to delete the task ${props.name}`;
 
   return (
-    <Modal title="Delete Task" onClose={closeModal}>
-      <div>
-        <h3>Are you sure you want to delete the task {props.name}</h3>
-        <div>{reason}</div>
-        <div className={classes.choiceContainer}>
-          <button
-            className={classes.btn + " " + classes.no}
-            onClick={closeModal}
-          >
-            &#x1F5D9; No
-          </button>
-          <button
-            className={classes.btn + " " + classes.yes}
-            onClick={handleConfirm}
-          >
-            &#10004; Yes
-          </button>
-        </div>
-      </div>
-    </Modal>
+    <ConfirmModal
+      reason={reason}
+      closeModal={closeModal}
+      message={message}
+      title="Delete Item"
+      handleConfirm={handleConfirm}
+      handleCancel={closeModal}
+    />
   );
 };
 

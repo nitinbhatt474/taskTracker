@@ -1,13 +1,15 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import EditTask from "../EditTask/EditTask";
 import DeleteItem from "../OptionActions/DeleteItem";
 import MoreInfo from "../OptionActions/MoreInfo";
 import AuthContext from "../store/AuthContext";
 import AssignmentListItem from "./AssignmentListItem";
+import Modal from "../UI/Modal";
 
 const AssignmentListItemWrapper = (props) => {
   const [showOptions, setShowOptions] = useState(false);
   const [done, setDone] = useState(false);
+  const [loading, setLoading] = useState(false);
   const optionItems = ["done", "edit", "delete", "more-info"];
   const [deleted, setDeleted] = useState(false);
   const ctx = useContext(AuthContext);
@@ -20,6 +22,13 @@ const AssignmentListItemWrapper = (props) => {
   else if (props.data.category === "complete") doneCategory = "incomplete";
 
   const [showOptionItem, setShowOptionItem] = useState(initState);
+  const [showErrorModal, setShowErrorModal] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
+
+  const closeErrorModal = () => {
+    setShowErrorModal(false);
+  };
+
   const toggleDeleted = () => {
     setDeleted((state) => !state);
     setTimeout(() => {
@@ -36,26 +45,50 @@ const AssignmentListItemWrapper = (props) => {
     setShowOptionItem((showOptionItem) => {
       const newState = { ...showOptionItem };
       newState[option] = !newState[option];
-      if (option === "done") handleDoneClick();
       return newState;
     });
   };
 
   const handleDoneClick = () => {
-    fetch(ctx.backendURL + "tasks/update-task", {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify({
-        email: ctx.email,
-        password: ctx.password,
-        _id: props.data._id,
-        category: doneCategory,
-      }),
-    });
-    setDone(true);
+    handleOptionClick("done");
   };
+
+  useEffect(() => {
+    if (showOptionItem.done) {
+      setLoading(true);
+      fetch(ctx.backendURL + "tasks/update-task", {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify({
+          email: ctx.email,
+          password: ctx.password,
+          _id: props.data._id,
+          category: doneCategory,
+        }),
+      })
+        .then((res) => res.json())
+        .then((res) => {
+          setLoading(false);
+          if (res.updated) {
+            setDone(true);
+            setTimeout(() => {
+              props.toggleChanged();
+            }, 600);
+          } else {
+            setLoading(false);
+            setShowErrorModal(true);
+            setErrorMessage("Unable to update status!");
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+          setErrorMessage("Server Error! - " + err);
+        });
+    }
+  }, [showOptionItem, ctx, props, doneCategory]);
+
   const handleItemClick = (e) => {
     if (e.target.id === props.data.name) {
       console.log(e.target.id);
@@ -87,6 +120,7 @@ const AssignmentListItemWrapper = (props) => {
     showOptions,
     done,
     deleted,
+    loading,
     toggleDeleted,
     optionItems,
     toggleOptions,
@@ -98,7 +132,6 @@ const AssignmentListItemWrapper = (props) => {
 
   return (
     <>
-      {showOptionItem["done"] && handleDoneClick()}
       {showOptionItem["more-info"] && (
         <MoreInfo data={props.data} onClose={handleOptionClick} />
       )}
@@ -117,6 +150,15 @@ const AssignmentListItemWrapper = (props) => {
           onClose={handleOptionClick}
           toggleChanged={props.toggleChanged}
         />
+      )}
+      {showErrorModal && (
+        <Modal
+          invalid={true}
+          onClose={closeErrorModal}
+          title="Error while updating status"
+        >
+          <p>{errorMessage}</p>
+        </Modal>
       )}
       <AssignmentListItem {...childProps} />
     </>

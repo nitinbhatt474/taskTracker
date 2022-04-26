@@ -31,13 +31,16 @@ const AssignmentListItem = (props) => {
         {data.repetitions}
       </span>
       <div className={classes.sideBtnContainer}>
-        <img
-          id={data.taskName + "done"}
-          src={done ? doneIcon : incompleteIcon}
-          className={`${classes.done} ${done ? classes.doneAnimation : ""}`}
-          onClick={props.handleDoneClick}
-          alt="done-icon"
-        />
+        <div className={props.loading ? classes.loading : ""}>
+          <img
+            id={data.taskName + "done"}
+            src={done ? doneIcon : incompleteIcon}
+            className={`${classes.done} ${done ? classes.doneAnimation : ""}`}
+            onClick={props.handleDoneClick}
+            alt="done-icon"
+            style={{ display: `${props.loading ? "none" : "block"}` }}
+          />
+        </div>
         <span
           className={classes.options}
           id={data._id + "options"}
@@ -50,7 +53,7 @@ const AssignmentListItem = (props) => {
             items={props.optionItems}
             handleClick={props.handleOptionClick}
             setShowOptions={props.setShowOptions}
-            id={data.taskName + "optionList"}
+            id={data._id + "optionList"}
             buttonId={data._id + "options"}
           />
         )}
