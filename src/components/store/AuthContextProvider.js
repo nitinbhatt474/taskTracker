@@ -38,7 +38,7 @@ const AuthContextProvider = (props) => {
   };
 
   const initialState = {
-    backendURL: "http://localhost:5000/",
+    backendURL: "https://task--tracker-backend.herokuapp.com/",
     email: localStorage.getItem("task-email"),
     password: localStorage.getItem("task-password"),
     loggedIn: localStorage.getItem("task-email") !== null,
