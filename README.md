@@ -11,11 +11,14 @@ Please contact if you encounter any bugs @ [https://tasktracker-tt.netlify.app/]
 
 ---
 
+### New Features added
+
+JWT Authentication
+
 ### Website
 
 [https://tasktracker-tt.netlify.app/](https://tasktracker-tt.netlify.app/)
 
 ### Features to be added in future updates
 
-Using JWT for authentication purposes.
 A advance search option to search tasks.

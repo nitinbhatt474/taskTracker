@@ -23,15 +23,24 @@ const Register = (props) => {
   };
 
   const handleSubmit = (e) => {
-    setLoading(true);
     e.preventDefault();
+    if (email.trim() === "") {
+      setMessage("Email address missing");
+      return;
+    }
+    if (password.trim() === "") {
+      setMessage("Password missing");
+      return;
+    }
     if (confirmPassword !== password) {
       setMessage("Passwords do not match try again!");
       return;
     }
+    setLoading(true);
 
     fetch(ctx.backendURL + "auth/register", {
       method: "POST",
+      credentials: "include",
       headers: {
         "content-type": "application/json",
       },

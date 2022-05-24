@@ -16,6 +16,7 @@ const Incomplete = (props) => {
     setLoading(true);
     fetch(ctx.backendURL + "tasks/get-tasks", {
       method: "POST",
+      credentials: "include",
       headers: {
         "content-type": "application/json",
       },
@@ -36,7 +37,7 @@ const Incomplete = (props) => {
   if (!ctx.loggedIn) {
     return <div className={classes.msg}>Please login to see your tasks</div>;
   } else if (loading) return <div className="task-loading"></div>;
-  else if (tasks.length === 0) {
+  else if (tasks.length === 0 || !tasks) {
     return <div className={classes.msg}>No incomplete tasks present</div>;
   } else if (tasks.hasOwnProperty("valid")) return <ul></ul>;
 

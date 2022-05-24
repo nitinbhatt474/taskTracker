@@ -16,6 +16,7 @@ const Complete = (props) => {
     setLoading(true);
     fetch(ctx.backendURL + "tasks/get-tasks", {
       method: "POST",
+      credentials: "include",
       headers: {
         "content-type": "application/json",
       },

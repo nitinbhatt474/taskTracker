@@ -10,7 +10,6 @@ const reducer = (state, action) => {
   switch (action.type) {
     case authActions.LOGIN:
       localStorage.setItem("task-email", action.email);
-      localStorage.setItem("task-password", action.password);
 
       return {
         ...state,
@@ -21,7 +20,6 @@ const reducer = (state, action) => {
 
     case authActions.LOGOUT:
       localStorage.removeItem("task-email");
-      localStorage.removeItem("task-password");
 
       return { ...state, email: null, password: null, loggedIn: false };
 
@@ -40,7 +38,7 @@ const AuthContextProvider = (props) => {
   };
 
   const initialState = {
-    backendURL: "https://task--tracker-backend.herokuapp.com/",
+    backendURL: "http://localhost:5000/",
     email: localStorage.getItem("task-email"),
     password: localStorage.getItem("task-password"),
     loggedIn: localStorage.getItem("task-email") !== null,

@@ -58,6 +58,7 @@ const AssignmentListItemWrapper = (props) => {
       setLoading(true);
       fetch(ctx.backendURL + "tasks/update-task", {
         method: "POST",
+        credentials: "include",
         headers: {
           "content-type": "application/json",
         },
@@ -99,6 +100,7 @@ const AssignmentListItemWrapper = (props) => {
     try {
       const res = await fetch(ctx.backendURL + "tasks/delete-task", {
         method: "POST",
+        credentials: "include",
         headers: {
           "content-type": "application/json",
         },

@@ -38,6 +38,7 @@ const AddModal = (props) => {
       setLoading(true);
       fetch(ctx.backendURL + "tasks/add-task", {
         method: "POST",
+        credentials: "include",
         headers: {
           "content-type": "application/json",
         },

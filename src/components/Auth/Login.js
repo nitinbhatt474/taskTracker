@@ -31,6 +31,8 @@ const Login = (props) => {
     setLoading(true);
     fetch(ctx.backendURL + "auth/login", {
       method: "POST",
+      redirect: "follow",
+      credentials: "include",
       headers: {
         "content-type": "application/json",
       },
@@ -38,6 +40,7 @@ const Login = (props) => {
     })
       .then((res) => res.json())
       .then((res) => {
+        console.log(res);
         setLoading(false);
         if (res.loggedIn) {
           ctx.login(email, password);
