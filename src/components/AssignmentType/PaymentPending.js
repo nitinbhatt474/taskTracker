@@ -72,10 +72,12 @@ const PaymentPending = (props) => {
     }
   }, [confirmPayment, props, ctx]);
 
+  console.log(tasks);
+
   if (!ctx.loggedIn) {
     return <div className={classes.msg}>Please login to see your tasks</div>;
   } else if (loading) return <div className="task-loading"></div>;
-  else if (tasks.length === 0) {
+  else if (tasks.length === 0 || !tasks) {
     return (
       <div className={classes.msg}>
         No amount due for completed assignments.
